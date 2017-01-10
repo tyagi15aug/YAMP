@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>YAMA</title>
+    <link rel="icon" type="image/ico" href="/favicon.ico">
+    <!-- Compiled and minified AngularJS script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js" crossorigin="anonymous"></script>
+    <script src="node_modules\angular-route\angular-route.min.js"></script>
+    <!-- Montserrat from google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+    <!-- Angular UI Bootstrap -- >
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+    <link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
+    <!-- application script -->
+    <script src="script/app.js"></script>
+    <!-- application stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- only required for wolfram api -->
+    <!-- <script src="script/xml2json.min.js"></script> -->
+  </head>
+
+  <body ng-app="movieApp">
+      <div ng-view></div>
+    <div id="content" class="container-fluid" ng-controller="movieResults">
+      <div class="applicationHeader">
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header" onclick="location.reload()">
+              <img src="main_icon.png" class="mainIcon"/>
+              <p class="navbar-brand">Yet Another Movie App</p>
+            </div>
+          </div>
+        </nav>
+        <form class="searchForm">
+          <label for="search">Search: <input id="search" name="search" type="text" ng-model="searchString" ng-keyup="getMovies()" /></label>
+          <!-- <button ng-click="getMovies()">Search</button> -->
+        </form>
+      </div>
+      <!-- <label for="wolfram">Search:<input id="wolfram" name="wolfram" type="text" ng-model="wolframString"/></label>
+      <button ng-click="wolframIt()">Wolfram</button> -->
+      <div id="resultsArea">
+        <result-card ng-repeat="movie in movies" movie-data="movie"></result-card>
+        <!-- <div class="resultCard" ng-repeat="movie in movies">
+          <img ng-src="{{movie.posters.original}}" ng-if='movie.poster_path != null'/>
+          <img ng-src="https://www.themoviedb.org/assets/e2dd052f141e33392eb749aab2414ec0/images/no-poster-w300_and_h450_bestv2-v2.png" ng-if='movie.poster_path == null'/>
+          <div class="movieInfo">
+            <p class="movieTitle">{{movie.title}}</p>
+            <p ng-if="movie.details.tagline != null">{{movie.details.tagline}}</p>
+            <p>{{movie.release_dates.theater | dateFormatter}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{movie.ratings.audience_score}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{movie.runtime}}</p>
+            <p>{{movie.synopsis | textLimiter}} <span ng-if="movie.synopsis.length > 347" ng-click="showDetails(movie.id)">Read More</span></p>
+          </div>
+        </div> -->
+        <div ng-repeat="result in wolframResults">
+          <p>{{movie.original_title}}</p>
+          <img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movie.poster_path}}" />
+          <p>{{movie.overview}}</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- Original code in index.html -->
+<!-- <div class="resultCard" ng-repeat="movie in movies">
+  <img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movie.poster_path}}" ng-if='movie.poster_path != null'/>
+  <img ng-src="https://www.themoviedb.org/assets/e2dd052f141e33392eb749aab2414ec0/images/no-poster-w300_and_h450_bestv2-v2.png" ng-if='movie.poster_path == null'/>
+  <div class="movieInfo">
+    <p class="movieTitle">{{movie.title}}</p>
+    <p ng-if="movie.details.tagline != null">{{movie.details.tagline}}</p>
+    <p>{{movie.release_date | dateFormatter}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{movie.original_language | movieLanguage}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{movie.vote_average}}</p>
+    <p>{{movie.overview | textLimiter}} <span ng-if="movie.overview.length > 347" ng-click="showDetails(movie.id)">Read More</span></p>
+    <p class="" style="text-align:right;">Details</p>
+  </div>
+</div> -->
+
+
+<!-- template: '<div class="resultCard"><img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movie.poster_path}}" ng-if="movie.poster_path != null"/><img ng-src="https://www.themoviedb.org/assets/e2dd052f141e33392eb749aab2414ec0/images/no-poster-w300_and_h450_bestv2-v2.png" ng-if="movie.poster_path == null"/><div class="movieInfo"><p class="movieTitle">{{movie.title}}</p><p ng-if="movie.details.tagline != null">{{movie.details.tagline}}</p><p>{{movie.release_date | dateFormatter}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{movie.original_language | movieLanguage}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{movie.vote_average}}</p><p>{{movie.overview | textLimiter}} <span ng-if="movie.overview.length > 347" ng-click="showDetails(movie.id)">Read More</span></p><p class="" style="text-align:right;">Details</p></div></div>' -->

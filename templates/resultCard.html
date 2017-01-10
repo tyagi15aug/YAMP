@@ -1,0 +1,21 @@
+<div class="resultCard">
+    <img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movie.poster_path}}" ng-if="movie.poster_path != null" class="moviePoster"/>
+    <img ng-src="https://www.themoviedb.org/assets/e2dd052f141e33392eb749aab2414ec0/images/no-poster-w300_and_h450_bestv2-v2.png" ng-if="movie.poster_path == null" class="moviePoster"/>
+    <div class="movieInfo">
+        <p class="movieTitle">{{movie.title}}</p>
+        <p ng-if="movie.details.tagline != null">{{movie.details.tagline}}</p>
+        <div class="row-fluid">
+            <div class="col-md-5">
+                <span class="glyphicon glyphicon-calendar"></span><span class="leftPadding_5">{{movie.release_date | dateFormatter}}</span>
+            </div>
+            <div class="col-md-4">
+                <span class="glyphicon glyphicon-volume-up"></span><span class="leftPadding_5">{{movie.original_language | movieLanguage}}</span>
+            </div>
+            <div class="col-md-3">
+                <span class="glyphicon glyphicon-star"></span><span class="leftPadding_5">{{movie.vote_average}}</span>
+            </div>
+        </div>
+        <p>{{movie.overview | textLimiter}} <span ng-if="movie.overview.length > 347" ng-click="showDetails(movie.id)">Read More</span></p>
+        <p class="" style="text-align:right; cursor: pointer;" ng-click='showMovieDetails(movie.id)'>Details</p>
+    </div>
+</div>

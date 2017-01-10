@@ -1,0 +1,137 @@
+html{
+  background: #e4e4e4;
+}
+
+body{
+  font-family: 'Montserrat', sans-serif;
+  background: #e4e4e4;
+}
+
+.leftPadding_5{
+    padding-left: 5px;
+}
+
+#content{
+  text-align: center;
+}
+
+.applicationHeader{
+  text-align: center;
+}
+
+.searchForm{
+  margin: 10px;
+}
+
+.navbar-header{
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.brand{
+  font-size: 25px;
+  font-weight: bold;
+  padding: 15px;
+  vertical-align: middle;
+}
+
+.mainIcon{
+  width: 75px;
+  height: 75px;
+}
+
+button{
+    background: #97bbc7;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 25px;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+
+input{
+  border: 1px black solid;
+  padding: 5px;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+input:focus{
+  outline: none;
+  border-color: #4ca2ef;
+}
+
+#person-name{
+
+}
+#person-job-profile{
+
+}
+
+.bold-blue-14{
+
+}
+
+.black-bold-13{
+
+}
+
+.heading{
+
+}
+
+.articleHeading{
+
+}
+
+.articleBody{
+
+}
+
+.resultCard, .detailResultCard{
+  width: 750px;
+  margin: 10px;
+  color: white;
+  overflow: hidden;
+  background: black;
+  text-align: left;
+  display: inline-flex;
+  border: 5px white solid;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.6),0 1px 1px 0 rgba(0,0,0,.35),0 2px 1px -1px rgba(0,0,0,.46);
+  /*box-shadow: 2px 3px 3px 0px rgba(0, 0, 0, 0.45);*/
+}
+
+.detailResultCard{
+    width: 50%;
+    display: inline-block;
+}
+
+.movieInfo{
+  padding: 30px;
+}
+
+.movieTitle{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#movieHeaderContainer{
+    display: inline-flex;
+}
+
+#movieDetailsContainer{
+
+}
+
+.moviePoster{
+    width: 100%;
+    height: 100%;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}

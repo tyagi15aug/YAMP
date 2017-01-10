@@ -1,0 +1,32 @@
+<div class="row-fluid clearfix text-center">
+    <div class="detailResultCard">
+        <div id="movieHeaderContainer row-fluid clearfix" class="">
+            <div class="col-lg-5 col-md-6 nopadding">
+                <img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movieDetails.poster_path}}" ng-if="movieDetails.poster_path != null" class="moviePoster"/>
+                <img ng-src="https://www.themoviedb.org/assets/e2dd052f141e33392eb749aab2414ec0/images/no-poster-w300_and_h450_bestv2-v2.png" ng-if="movieDetails.poster_path == null" class="moviePoster"/>
+            </div>
+            <div class="movieInfo col-lg-7 col-md-6 nopadding">
+                    <p class="movieTitle">{{movieDetails.title}}</p>
+                    <p ng-if="movieDetails.tagline != null"><em>{{movieDetails.tagline}}</em></p>
+                    <div class="row-fluid clearfix">
+                        <div class="col-md-5">
+                            <span class="glyphicon glyphicon-calendar"></span><span class="leftPadding_5">{{movieDetails.release_date | dateFormatter}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="glyphicon glyphicon-volume-up"></span><span class="leftPadding_5">{{movieDetails.original_language | movieLanguage}}</span>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="glyphicon glyphicon-star"></span><span class="leftPadding_5">{{movieDetails.vote_average}}</span>
+                        </div>
+                    </div>
+            </div>
+            <div class="movieInfo col-lg-7 col-md-6 nopadding">
+            </div>
+        </div>
+        <div id="movieDetailsContainer row-fluid clearfix" class="">
+            <div class="col-lg-12 col-md-12">
+                <p ng-if="movieDetails.overview != null">{{movieDetails.overview}}</p>
+            </div>
+        </div>
+    </div>
+</div>
