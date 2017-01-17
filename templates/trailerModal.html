@@ -1,0 +1,12 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">Trailer</h3>
+</div>
+<div class="modal-body" id="modal-body">
+  <iframe width="560" height="315" src="{{$scope.videoURL}}" frameborder="0" allowfullscreen ng-if="$scope.videoURL != undefined"></iframe>
+  <p>
+      Video URL: {{$scope.videoURL}}
+  </p>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="ok()">Close</button>
+</div>
