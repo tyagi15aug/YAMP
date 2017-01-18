@@ -1,12 +1,30 @@
 <div class="modal-header">
   <h3 class="modal-title" id="modal-title">Trailer</h3>
+  <button class="btn btn-primary" type="button" ng-click="close()">X</button>
 </div>
 <div class="modal-body" id="modal-body">
-  <iframe width="560" height="315" src="{{$scope.videoURL}}" frameborder="0" allowfullscreen ng-if="$scope.videoURL != undefined"></iframe>
-  <p>
-      Video URL: {{$scope.videoURL}}
-  </p>
+  <iframe width="560" height="315" src="{{$scope.videoSrc}}" frameborder="0" allowfullscreen></iframe>
 </div>
-<div class="modal-footer">
-  <button class="btn btn-primary" type="button" ng-click="ok()">Close</button>
-</div>
+<!-- <div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="hide()">Close</button>
+</div> -->
+
+<md-dialog aria-label="Mango (Fruit)">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2></h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

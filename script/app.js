@@ -1,4 +1,4 @@
-var movieApp = angular.module('movieApp', ['ngRoute', 'ngAnimate', 'angularModalService']);
+var movieApp = angular.module('movieApp', ['ngRoute', 'ngAnimate', 'ngMaterial']);
 
 movieApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $location) {
   $routeProvider
@@ -18,20 +18,12 @@ movieApp.config(['$routeProvider', '$locationProvider', function($routeProvider,
     })
     .when('/trailer', {
       templateUrl: 'templates/trailerModal.html',
-      controller: 'ModalController',
+      controller: DialogController,
     })
     .otherwise({
       redirectTo: '/home'
     });
 }]);
-
-// movieApp.factory('shareData', function(){
-//     var data = {};
-//     data.add = function(_data){
-//         data = _data;
-//       };
-//     return data;
-// });
 
 movieApp.service('shareData', function() {
   var data = this;
@@ -66,38 +58,63 @@ movieApp.controller('HomeController', function($scope, $http, $q) {
   }
 });
 
-movieApp.controller('DetailsController', function($scope, $http, ModalService, shareData, shareURL) {
+movieApp.controller('DetailsController', function($scope, $http, shareData, shareURL, $mdDialog) {
   $scope.movieDetails = shareData.data;
   $scope.showPopup = function(key) {
     var videoUrl = "https://www.youtube.com/embed/" + key;
-    //shareURL.url = $scope.videoURL;
-    // $uibModal.open({
-    //     templateUrl: '../templates/trailerModal.html',
-    //     controller: function($scope, videoURL) {
-    //         //$scope.movieDetails = shareData.data;
-    //         $scope.videoURL = videoURL;
-    //     },
-    //     resolve: {
-    //         videoURL: function(){
-    //             return videoUrl;
-    //         }
-    //     }
-    // });
+    shareURL.url = videoUrl;
+    var template =  '<iframe width="560" height="315" src="'+ videoUrl + '" frameborder="0" allowfullscreen></iframe>';
+    $mdDialog.show({
+        controller: DialogController,
+        template: `<md-dialog aria-label="Mango (Fruit)">
+                      <form ng-cloak>
+                        <md-toolbar>
+                          <div class="md-toolbar-tools">
+                            <h2>Trailer</h2>
+                            <span flex></span>
+                            <md-button class="md-icon-button" ng-click="cancel()">
+                              <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                            </md-button>
+                          </div>
+                        </md-toolbar>
 
-    ModalService.showModal({
-        templateUrl: "../templates/trailerModal.html",
-        controller: "ModalController"
-    }).then(function(modal) {
-        //it's a bootstrap element, use 'modal' to show it
-        modal.element.modal();
+                        <md-dialog-content>
+                          <div class="md-dialog-content">
+                            <iframe width="560" height="315" src="`+ videoUrl + `" frameborder="0" allowfullscreen></iframe>
+                          </div>
+                        </md-dialog-content>
+                      </form>
+                    </md-dialog>`,
+        parent: angular.element(document.body),
+        clickOutsideToClose:true,
+        fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+    })
+    .then(function(answer) {
+        $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+        $scope.status = 'You cancelled the dialog.';
     });
   }
 });
 
-movieApp.controller('ModalController', function($scope, shareData, shareURL) {
-    $scope.movieDetails = shareData.data;
-    $scope.videoURL = shareURL.url;
-});
+function DialogController($scope, shareURL, $mdDialog) {
+    $scope.videoSrc = shareURL.url;
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.close = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+ }
 
 movieApp.controller('ResultCardController', function($scope, $http, $location, shareData) {
   $scope.showMovieDetails = function(movieID) {
