@@ -1,6 +1,6 @@
 var movieApp = angular.module('movieApp', ['ngRoute', 'ngAnimate', 'ngMaterial']);
 
-movieApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $location) {
+movieApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $location) {
   $routeProvider
     .when('/', {
       templateUrl: 'templates/login.html'
@@ -60,8 +60,8 @@ movieApp.controller('HomeController', function($scope, $http, $q) {
 
 movieApp.controller('DetailsController', function($scope, $http, shareData, shareURL, $mdDialog) {
   $scope.movieDetails = shareData.data;
-  $scope.showPopup = function(key) {
-    var videoUrl = "https://www.youtube.com/embed/" + key;
+  $scope.showPopup = function(result) {
+    var videoUrl = "https://www.youtube.com/embed/" + result.key;
     shareURL.url = videoUrl;
     var template =  '<iframe width="560" height="315" src="'+ videoUrl + '" frameborder="0" allowfullscreen></iframe>';
     $mdDialog.show({
@@ -69,17 +69,17 @@ movieApp.controller('DetailsController', function($scope, $http, shareData, shar
         template: `<md-dialog aria-label="Mango (Fruit)">
                       <form ng-cloak>
                         <md-toolbar>
-                          <div class="md-toolbar-tools">
-                            <h2>Trailer</h2>
+                          <div class="md-toolbar-tools modalHeader">
+                            <h2>`+ result.name +`</h2>
                             <span flex></span>
                             <md-button class="md-icon-button" ng-click="cancel()">
-                              <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                              <i class="material-icons">close</i>
                             </md-button>
                           </div>
                         </md-toolbar>
 
                         <md-dialog-content>
-                          <div class="md-dialog-content">
+                          <div class="md-dialog-content modalContent">
                             <iframe width="560" height="315" src="`+ videoUrl + `" frameborder="0" allowfullscreen></iframe>
                           </div>
                         </md-dialog-content>

@@ -2,7 +2,7 @@
   <div class="applicationHeader">
 
     <form class="searchForm">
-      <label for="search">Search: <input id="search" name="search" type="text" ng-model="searchString" ng-keyup="getMovies()" /></label>
+      <label for="search">Search: <input id="search" name="search" type="text" autocomplete="off" ng-model="searchString" ng-keyup="getMovies()" /></label>
       <!-- <button ng-click="getMovies()">Search</button> -->
     </form>
   </div>
@@ -10,16 +10,6 @@
   <button ng-click="wolframIt()">Wolfram</button> -->
   <div id="resultsArea">
     <result-card ng-repeat="movie in movies" movie-data="movie"></result-card>
-    <!-- <div class="resultCard" ng-repeat="movie in movies">
-      <img ng-src="{{movie.posters.original}}" ng-if='movie.poster_path != null'/>
-      <img ng-src="https://www.themoviedb.org/assets/e2dd052f141e33392eb749aab2414ec0/images/no-poster-w300_and_h450_bestv2-v2.png" ng-if='movie.poster_path == null'/>
-      <div class="movieInfo">
-        <p class="movieTitle">{{movie.title}}</p>
-        <p ng-if="movie.details.tagline != null">{{movie.details.tagline}}</p>
-        <p>{{movie.release_dates.theater | dateFormatter}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{movie.ratings.audience_score}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{movie.runtime}}</p>
-        <p>{{movie.synopsis | textLimiter}} <span ng-if="movie.synopsis.length > 347" ng-click="showDetails(movie.id)">Read More</span></p>
-      </div>
-    </div> -->
     <div ng-repeat="result in wolframResults">
       <p>{{movie.original_title}}</p>
       <img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{movie.poster_path}}" />

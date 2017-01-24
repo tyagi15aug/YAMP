@@ -7,6 +7,10 @@ body{
   background: #e4e4e4;
 }
 
+:focus{
+    outline: none;
+}
+
 .leftPadding_5{
     padding-left: 5px;
 }
@@ -110,17 +114,33 @@ input:focus{
 
 .detailResultCard{
     width: 50%;
+    max-width: 950px;
     display: inline-block;
 }
 
 .movieInfo{
-  padding: 30px;
+  padding: 20px;
 }
 
 .movieTitle{
   font-size: 25px;
   font-weight: bold;
 }
+
+.modalHeader{
+    background: #2d384a;
+}
+
+.modalContent{
+    padding: 5px !important;
+    background: black;
+}
+
+.movieTrailer{
+    cursor:pointer
+}
+
+
 
 #movieHeaderContainer{
     display: inline-flex;
@@ -149,6 +169,8 @@ input:focus{
     border-color: #ebebeb;
     color: #000;
     text-decoration: none;
+    font-size: 11px;
+    line-height: 30px;
 }
 
 a.movieGenre:hover, a.movieGenre:focus{
